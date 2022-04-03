@@ -1,0 +1,28 @@
+.movie {
+  width: 180px;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+
+  &:hover &-caption {
+    transform: translateY(0);
+  }
+
+  &-img {
+    object-fit: cover;
+  }
+  &-caption {
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    position: absolute;
+    bottom: 0;
+    font-size: 0.7rem;
+    padding: 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 180px;
+    white-space: nowrap;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+}
