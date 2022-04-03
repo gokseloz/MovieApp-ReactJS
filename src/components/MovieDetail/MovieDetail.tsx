@@ -6,7 +6,7 @@ import { TomatoIcon } from "../iconComponents/iconComponent";
 
 const MovieDetail = () => {
   const { imdbID } = useParams();
-  const { isLoading, error, movie } = useFetch(`&i=${imdbID}`);
+  const { isLoading, error, data: movie } = useFetch(`&i=${imdbID}`);
 
   if (isLoading) {
     return (
@@ -93,7 +93,7 @@ const MovieDetail = () => {
               <div className="movie-firstImpression">
                 <ul className="movie-shortInfo">
                   <li>{Released.split(" ")[2]}</li>
-                  <li>{Rated}</li>
+                  <li>{Rated === "N/A" ? "No Rated" : Rated}</li>
                   <li>{Runtime}</li>
                 </ul>
 
@@ -125,7 +125,9 @@ const MovieDetail = () => {
               </div>
               <div className="eachInfo">
                 <span className="title">Awards</span>
-                <span className="desc">{Awards}</span>
+                <span className="desc">
+                  {Awards === "N/A" ? "Not Found" : Awards}
+                </span>
               </div>
             </div>
           </section>

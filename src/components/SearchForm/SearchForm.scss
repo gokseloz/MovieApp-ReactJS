@@ -1,0 +1,30 @@
+.searchForm-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .searchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error-msg {
+    margin-top: 0.3rem;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    animation: errorMsg 2s ease-in-out;
+    background-color: #c52020;
+    padding: 0.5rem 1rem;
+  }
+
+  @keyframes errorMsg {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+}

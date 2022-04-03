@@ -1,5 +1,5 @@
-import { AxiosResponse } from "axios";
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import movieApi from "./api/movieApi";
 
 const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
@@ -7,7 +7,7 @@ const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 const useFetch = (urlParams: string) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({ show: false, msg: "" });
-  const [movie, setMovie] = useState<MovieDetails | SingleMovie>();
+  const [data, setData] = useState<MovieDetails | SingleMovie>();
 
   const fetchMovies = async () => {
     setIsLoading(true);
@@ -15,7 +15,7 @@ const useFetch = (urlParams: string) => {
       const response: any = await movieApi.get(`?apikey=${apiKey}${urlParams}`);
       console.log(response);
       if (response.data.Response === "True") {
-        setMovie(response.data.Search || response.data);
+        setData(response.data.Search || response.data);
         setError({ show: false, msg: "" });
       } else {
         setError({ show: true, msg: response.data.Error });
@@ -29,7 +29,7 @@ const useFetch = (urlParams: string) => {
     fetchMovies();
   }, [urlParams]);
 
-  return { isLoading, error, movie };
+  return { isLoading, error, data };
 };
 
 export default useFetch;

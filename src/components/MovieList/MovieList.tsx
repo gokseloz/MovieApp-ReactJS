@@ -4,7 +4,7 @@ import "./MovieList.scss";
 import SingleMovie from "../SingleMovie/SingleMovie";
 
 const MovieList = () => {
-  const { movie, isLoading } = useGlobalContext();
+  const { movies, isLoading } = useGlobalContext();
 
   if (isLoading) {
     // pure css loader => go to App.scss for css codes
@@ -30,7 +30,7 @@ const MovieList = () => {
     <main>
       <div className="container">
         <div className="movieList-container">
-          {movie.map((movie: SingleMovie, idx: string) => (
+          {movies.map((movie: SingleMovie, idx: string) => (
             <SingleMovie key={idx} {...movie} />
           ))}
         </div>

@@ -33,6 +33,11 @@ ol {
 }
 
 /* Set core root defaults */
+html {
+  width: 100vw;
+  // overflow-y: scroll;
+  overflow-x: hidden;
+}
 html:focus-within {
   scroll-behavior: smooth;
 }

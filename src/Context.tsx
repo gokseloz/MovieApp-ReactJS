@@ -1,17 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
-import movieApi from "./api/movieApi";
+import React, { useContext, useState } from "react";
 import useFetch from "./useFetch";
 // import mockMovie from "./mockMovie.json";
 
 const AppContext = React.createContext<any>(null);
-const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
 const AppProvider: React.FC<any> = ({ children }) => {
   const [movieName, setMovieName] = useState("lord");
-  const { isLoading, error, movie } = useFetch(`&s=${movieName}`);
+  const { isLoading, error, data: movies } = useFetch(`&s=${movieName}&page=1`);
 
   return (
-    <AppContext.Provider value={{ isLoading, error, movie }}>
+    <AppContext.Provider
+      value={{ isLoading, error, movies, movieName, setMovieName }}
+    >
       {children}
     </AppContext.Provider>
   );
