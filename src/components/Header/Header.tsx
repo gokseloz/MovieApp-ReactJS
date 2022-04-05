@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
+import { MovieIcon, StarIcon } from "../iconComponents/iconComponent";
 
 const Header = () => {
   return (
@@ -7,7 +8,9 @@ const Header = () => {
       <div className="container">
         <div className="header-container">
           <Link to="/">
-            <span className="app-logo">Movie App</span>
+            <span className="app-logo">
+              <MovieIcon aria-label="home page" />
+            </span>
           </Link>
           <Link to="/favourites">
             <span className="app-logo">Favourite Movies</span>
