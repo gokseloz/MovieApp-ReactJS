@@ -35,8 +35,11 @@ ol {
 /* Set core root defaults */
 html {
   width: 100vw;
-  // overflow-y: scroll;
+  font-size: 1.2rem;
   overflow-x: hidden;
+  @media (min-width: 1800px) {
+    font-size: 1.3rem;
+  }
 }
 html:focus-within {
   scroll-behavior: smooth;

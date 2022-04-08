@@ -5,7 +5,6 @@ import MovieDetail from "../../components/MovieDetail/MovieDetail";
 const MovieEach = () => {
   return (
     <>
-      <Header />
       <MovieDetail />
     </>
   );

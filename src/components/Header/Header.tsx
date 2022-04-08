@@ -13,7 +13,7 @@ const Header = () => {
             </span>
           </Link>
           <Link to="/favourites">
-            <span className="app-logo">Favourite Movies</span>
+            <span className="favourite-movies-btn">Favourite Movies</span>
           </Link>
         </div>
       </div>
