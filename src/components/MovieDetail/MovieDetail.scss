@@ -89,6 +89,17 @@
     }
   }
 }
+.goMovies-btn {
+  padding: 0.4em 0.8em;
+  background-color: rgba(82, 159, 231, 0.8);
+  width: max-content;
+  border-radius: 0.5em;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: rgba(82, 159, 231, 1);
+  }
+}
 
 .movie-poster-section {
   img {

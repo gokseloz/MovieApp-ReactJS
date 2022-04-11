@@ -80,7 +80,7 @@ const MovieDetail = () => {
       </li>
     );
   });
-
+  console.log(Actors);
   return (
     <main className="main">
       <div className="container">
@@ -104,11 +104,11 @@ const MovieDetail = () => {
             <div className="movie-general-info">
               <div className="eachInfo">
                 <span className="title">Genres</span>
-                <span className="desc">{Genre.split(",")}</span>
+                <span className="desc">{Genre}</span>
               </div>
               <div className="eachInfo">
                 <span className="title">Actors</span>
-                <span className="desc">{Actors.split(",")}</span>
+                <span className="desc">{Actors}</span>
               </div>
 
               <div className="eachInfo">
@@ -130,6 +130,9 @@ const MovieDetail = () => {
                 </span>
               </div>
             </div>
+            <Link to="/" className="goMovies-btn">
+              Back to movies
+            </Link>
           </section>
           <section className="movie-poster-section">
             <img src={Poster} alt="" />

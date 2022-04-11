@@ -1,5 +1,6 @@
 .movie {
-  width: 9rem;
+  width: 11rem;
+  aspect-ratio: 2/3;
   overflow: hidden;
   position: relative;
 
@@ -25,7 +26,6 @@
     padding: 0.5rem;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 180px;
     white-space: nowrap;
     transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
