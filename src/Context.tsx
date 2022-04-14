@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import useFetch from "./useFetch";
+import useFetch from "./hooks/useFetch";
 // import mockMovie from "./mockMovie.json";
 
 const AppContext = React.createContext<any>(null);

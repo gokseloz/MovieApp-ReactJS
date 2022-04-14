@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import movieApi from "./api/movieApi";
+import movieApi from "../api/movieApi";
+import useDebounce from "./useDebounce";
 
 const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
@@ -8,6 +9,8 @@ const useFetch = (urlParams: string) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({ show: false, msg: "" });
   const [data, setData] = useState<MovieDetails | SingleMovie>();
+
+  const debounce = useDebounce();
 
   const fetchMovies = async () => {
     setIsLoading(true);
@@ -25,8 +28,9 @@ const useFetch = (urlParams: string) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
-    fetchMovies();
+    debounce(fetchMovies, 500);
   }, [urlParams]);
 
   return { isLoading, error, data };

@@ -1,6 +1,6 @@
 import "./MovieDetail.scss";
 import { Link, useParams } from "react-router-dom";
-import useFetch from "../../useFetch";
+import useFetch from "../../hooks/useFetch";
 import { StarIcon } from "../iconComponents/iconComponent";
 import { TomatoIcon } from "../iconComponents/iconComponent";
 
