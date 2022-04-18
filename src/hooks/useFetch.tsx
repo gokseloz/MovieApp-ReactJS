@@ -16,7 +16,7 @@ const useFetch = (urlParams: string) => {
     setIsLoading(true);
     try {
       const response: any = await movieApi.get(`?apikey=${apiKey}${urlParams}`);
-      console.log(response);
+
       if (response.data.Response === "True") {
         setData(response.data.Search || response.data);
         setError({ show: false, msg: "" });

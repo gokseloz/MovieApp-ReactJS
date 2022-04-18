@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import { MovieIcon, StarIcon } from "../iconComponents/iconComponent";
+import { MovieIcon } from "../iconComponents/iconComponent";
 
 const Header = () => {
   return (
