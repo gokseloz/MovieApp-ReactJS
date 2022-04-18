@@ -1,15 +1,12 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { useGlobalContext } from "../../Context";
-import useDebounce from "../../hooks/useDebounce";
 import "./SearchForm.scss";
 
 const SearchForm = () => {
-  const { movieName, setMovieName, error } = useGlobalContext();
-  const debounce = useDebounce();
+  const { movieName, setMovieName } = useGlobalContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
