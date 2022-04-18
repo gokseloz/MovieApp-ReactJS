@@ -1,0 +1,11 @@
+.favouriteMovie-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.favourite-title {
+  text-align: center;
+  margin-top: 0.5rem;
+}

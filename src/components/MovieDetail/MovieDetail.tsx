@@ -3,10 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { StarIcon } from "../iconComponents/iconComponent";
 import { TomatoIcon } from "../iconComponents/iconComponent";
+import { useGlobalContext } from "../../Context";
 
 const MovieDetail = () => {
   const { imdbID } = useParams();
   const { isLoading, error, data: movie } = useFetch(`&i=${imdbID}`);
+  const { addMovieToFavourites, favouriteMovies, removeMovieToFavourites } =
+    useGlobalContext();
 
   if (isLoading) {
     return (
@@ -55,6 +58,10 @@ const MovieDetail = () => {
     Writer,
   } = movie as MovieDetails;
 
+  const isMovieInFavourite = favouriteMovies.find(
+    (fm: { imdbID: string | undefined }) => fm.imdbID === imdbID
+  );
+
   const renderedRating = Ratings.map((rating, idx) => {
     let icon;
     if (rating.Source.toLowerCase().includes("database")) {
@@ -80,7 +87,6 @@ const MovieDetail = () => {
       </li>
     );
   });
-  console.log(Actors);
   return (
     <main className="main">
       <div className="container">
@@ -130,9 +136,29 @@ const MovieDetail = () => {
                 </span>
               </div>
             </div>
-            <Link to="/" className="goMovies-btn">
-              Back to movies
-            </Link>
+            <div className="btns">
+              <Link to="/" className="goMovies-btn">
+                Back to movies
+              </Link>
+
+              {isMovieInFavourite ? (
+                <button
+                  className="addToFavourites-btn"
+                  onClick={() => removeMovieToFavourites(imdbID)}
+                >
+                  Remove from Favourites
+                </button>
+              ) : (
+                <button
+                  className="addToFavourites-btn"
+                  onClick={() =>
+                    addMovieToFavourites(imdbID, Poster, Released, Title)
+                  }
+                >
+                  Add to Favourites
+                </button>
+              )}
+            </div>
           </section>
           <section className="movie-poster-section">
             <img src={Poster} alt="" />
