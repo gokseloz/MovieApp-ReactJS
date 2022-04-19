@@ -4,3 +4,5 @@ interface IFavouriteMovie {
   Released: string;
   Title: string;
 }
+
+type IFavouriteMovieProps = [string, string, string, string];

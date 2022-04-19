@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useFetch from "./hooks/useFetch";
 
 const AppContext = React.createContext<any>(null);
@@ -6,42 +6,33 @@ const AppContext = React.createContext<any>(null);
 const AppProvider: React.FC<any> = ({ children }) => {
   const [movieName, setMovieName] = useState("lord");
   const { isLoading, error, data: movies } = useFetch(`&s=${movieName}&page=1`);
-  const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
-
   const [favouriteMovies, setFavouriteMovies] = useState(
     JSON.parse(localStorage.getItem("favouriteMovies") || JSON.stringify([]))
   );
 
-  const saveMoviesToStorage = (movie: IFavouriteMovie[] | null) => {
-    localStorage.setItem("favouriteMovies", JSON.stringify(movie));
-  };
+  useEffect(() => {
+    localStorage.setItem("favouriteMovies", JSON.stringify(favouriteMovies));
+  }, [favouriteMovies]);
 
-  const removeMovieToFavourites = (imdbID: string) => {
-    const storedMovies = JSON.parse(
-      localStorage.getItem("favouriteMovies") || ""
+  const handleFavouriteMovie = (movieProps: IFavouriteMovieProps) => {
+    const [imdbID, Poster, Released, Title] = [...movieProps];
+
+    const isInFavourite = Boolean(
+      favouriteMovies.find(
+        (favMov: IFavouriteMovie) => favMov.imdbID === imdbID
+      )
     );
-
-    const remainedMovies = storedMovies.filter(
-      (el: SingleMovie) => el.imdbID !== imdbID
-    );
-    saveMoviesToStorage(remainedMovies);
-    setFavouriteMovies(remainedMovies);
-  };
-
-  const addMovieToFavourites = (
-    imdbID: string,
-    Poster: string,
-    Released: string,
-    Title: string
-  ) => {
-    setIsAddedToFavourites(!isAddedToFavourites);
-    favouriteMovies.push({
-      imdbID: imdbID,
-      Poster: Poster,
-      Year: Released,
-      Title: Title,
-    });
-    saveMoviesToStorage(favouriteMovies);
+    if (isInFavourite) {
+      const remainedMovies = favouriteMovies.filter(
+        (el: SingleMovie) => el.imdbID !== imdbID
+      );
+      setFavouriteMovies(remainedMovies);
+    } else {
+      setFavouriteMovies([
+        ...favouriteMovies,
+        { imdbID: imdbID, Poster: Poster, Year: Released, Title: Title },
+      ]);
+    }
   };
 
   return (
@@ -52,9 +43,7 @@ const AppProvider: React.FC<any> = ({ children }) => {
         movies,
         movieName,
         setMovieName,
-        addMovieToFavourites,
-        removeMovieToFavourites,
-        isAddedToFavourites,
+        handleFavouriteMovie,
         favouriteMovies,
       }}
     >
