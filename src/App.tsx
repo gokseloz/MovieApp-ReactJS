@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MovieEach from "./views/MovieEach/MovieEach";
 import Header from "./components/Header/Header";
 import FavouriteMovies from "./views/FavouriteMovies/FavouriteMovies";
+import PageNotFound from "./views/PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -14,8 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/movie/:imdbID" element={<MovieEach />} />
         <Route path="/favourites" element={<FavouriteMovies />} />
-
-        {/* <Route path="*" element={<PageNotFound />} /> */}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );
