@@ -1,29 +1,33 @@
 import React, { useContext, useState } from "react";
 import useFetch from "./hooks/useFetch";
-// import mockMovie from "./mockMovie.json";
 
 const AppContext = React.createContext<any>(null);
 
 const AppProvider: React.FC<any> = ({ children }) => {
   const [movieName, setMovieName] = useState("lord");
   const { isLoading, error, data: movies } = useFetch(`&s=${movieName}&page=1`);
-  const [isAddedToFavourites, setIsAddedToFavourites] =
-    useState<boolean>(false);
+  const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
 
-  const defaultMovie = JSON.stringify([]);
   const [favouriteMovies, setFavouriteMovies] = useState(
-    JSON.parse(localStorage.getItem("favouriteMovies") || defaultMovie)
+    JSON.parse(localStorage.getItem("favouriteMovies") || JSON.stringify([]))
   );
+
+  const saveMoviesToStorage = (movie: IFavouriteMovie[] | null) => {
+    localStorage.setItem("favouriteMovies", JSON.stringify(movie));
+  };
 
   const removeMovieToFavourites = (imdbID: string) => {
     const storedMovies = JSON.parse(
       localStorage.getItem("favouriteMovies") || ""
-    ).filter((el: SingleMovie) => el.imdbID !== imdbID);
-    localStorage.setItem("favouriteMovies", JSON.stringify(storedMovies));
-    setFavouriteMovies(
-      JSON.parse(localStorage.getItem("favouriteMovies") || "")
     );
+
+    const remainedMovies = storedMovies.filter(
+      (el: SingleMovie) => el.imdbID !== imdbID
+    );
+    saveMoviesToStorage(remainedMovies);
+    setFavouriteMovies(remainedMovies);
   };
+
   const addMovieToFavourites = (
     imdbID: string,
     Poster: string,
@@ -37,7 +41,7 @@ const AppProvider: React.FC<any> = ({ children }) => {
       Year: Released,
       Title: Title,
     });
-    localStorage.setItem("favouriteMovies", JSON.stringify(favouriteMovies));
+    saveMoviesToStorage(favouriteMovies);
   };
 
   return (
