@@ -14,9 +14,14 @@ const FavouriteMovies = () => {
       <main>
         <div className="container">
           <div className="favouriteMovie-container">
-            {favouriteMovies.map((movie: SingleMovie, idx: string) => (
-              <SingleMovie key={idx} {...movie} />
-            ))}
+            {favouriteMovies.length > 0 ? (
+              favouriteMovies.map((movie: SingleMovie, idx: string) => (
+                <SingleMovie key={idx} {...movie} />
+              ))
+            ) : (
+              <h1>No Movie Selected</h1>
+            )}
+            {}
           </div>
         </div>
       </main>
