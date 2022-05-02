@@ -88,6 +88,7 @@ const MovieDetail = () => {
       </li>
     );
   });
+
   return (
     <main className="main">
       <div className="container">
@@ -100,7 +101,9 @@ const MovieDetail = () => {
               <div className="movie-firstImpression">
                 <ul className="movie-shortInfo">
                   <li>{Released.split(" ")[2]}</li>
+                  <span className="divider"></span>
                   <li>{Rated === "N/A" ? "No Rated" : Rated}</li>
+                  <span className="divider"></span>
                   <li>{Runtime}</li>
                 </ul>
 
