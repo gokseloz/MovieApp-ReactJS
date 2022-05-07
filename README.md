@@ -1,7 +1,17 @@
 ## Movie App with ReactJS
+- Search for movies
+- See detailed infos
+- Add them to favourites (localstorage)
 
-## This is an ongoing project
+## Used technologies, tools
 
-## Demo
+- Create React App
+- HTML, CSS, ReactJS, Typescript
 
-https://gokseloz-movieapp.netlify.app/
+## View Demo
+
+- [Demo](https://gokseloz-movieapp.netlify.app/)
+
+## Responsivity
+
+- Fully responsive
